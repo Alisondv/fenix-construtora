@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fênix Construtora</title>
+  <meta name="description" content="Fênix Construtora: terraplanagem, pavimentação, drenagem, saneamento e construção civil em Jaboticabal e região." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+
+  <!-- ===================== NAVEGAÇÃO ===================== -->
+  <nav id="navegacao-principal">
+    <div class="nav__inner">
+      <a href="#inicio" class="nav__logo" aria-label="Fênix Construtora">
+        <img src="assets/imagens/logo-fenix-rsp.jpeg" alt="Logo RSP" class="nav__logo-img" width="40" height="40" />
+        <span class="nav__logo-textos">
+          <span class="nav__logo-nome">Fênix</span>
+          <span class="nav__logo-sub">Construtora</span>
+        </span>
+      </a>
+
+      <!-- Links desktop -->
+      <ul class="nav__links" id="nav-links-desktop" role="list">
+        <li><a href="#sobre"    class="nav__link">Sobre</a></li>
+        <li><a href="#servicos" class="nav__link">Serviços</a></li>
+        <li><a href="#galeria"  class="nav__link">Obras</a></li>
+        <li><a href="#numeros"  class="nav__link">Números</a></li>
+        <li><a href="#contato"  class="nav__link">Contato</a></li>
+        <li>
+          <a href="https://wa.me/5516996289719" target="_blank" rel="noopener noreferrer" class="nav__whatsapp">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.137.564 4.148 1.549 5.882L.057 23.43a.75.75 0 00.912.912l5.557-1.49A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.88 0-3.66-.49-5.21-1.35l-.37-.21-3.86 1.03 1.05-3.77-.23-.38A10 10 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            WhatsApp
+          </a>
+        </li>
+      </ul>
+
+      <!-- Botão hamburger mobile -->
+      <button class="nav__hamburguer" id="botao-menu-mobile" aria-label="Abrir menu" aria-expanded="false">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <line x1="3" y1="7" x2="21" y2="7"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="17" x2="21" y2="17"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===================== MENU MOBILE (tela cheia) ===================== -->
+  <div id="menu-mobile-overlay" class="menu-mobile" role="dialog" aria-modal="true" aria-label="Menu de navegação">
+    <div class="menu-mobile__topo">
+      <span class="menu-mobile__logo">
+        <img src="assets/imagens/logo-fenix-rsp.jpeg" alt="" width="36" height="36" class="menu-mobile__logo-img" />
+        <span class="menu-mobile__logo-textos">
+          <span class="menu-mobile__logo-nome">Fênix</span>
+          <span class="menu-mobile__logo-sub">Construtora</span>
+        </span>
+      </span>
+      <button class="menu-mobile__fechar" id="botao-fechar-menu" aria-label="Fechar menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <line x1="5" y1="5" x2="19" y2="19"/>
+          <line x1="19" y1="5" x2="5" y2="19"/>
+        </svg>
+      </button>
+    </div>
+
+    <nav class="menu-mobile__nav" aria-label="Seções do site">
+      <a href="#sobre"    class="menu-mobile__link">Sobre</a>
+      <a href="#servicos" class="menu-mobile__link">Serviços</a>
+      <a href="#galeria"  class="menu-mobile__link">Obras</a>
+      <a href="#numeros"  class="menu-mobile__link">Números</a>
+      <a href="#contato"  class="menu-mobile__link menu-mobile__link--ultimo">Contato</a>
+    </nav>
+
+    <div class="menu-mobile__rodape">
+      <a href="https://wa.me/5516996289719" target="_blank" rel="noopener noreferrer" class="menu-mobile__btn-wa">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.137.564 4.148 1.549 5.882L.057 23.43a.75.75 0 00.912.912l5.557-1.49A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.88 0-3.66-.49-5.21-1.35l-.37-.21-3.86 1.03 1.05-3.77-.23-.38A10 10 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        Falar no WhatsApp
+      </a>
+      <p class="menu-mobile__info">Jaboticabal/SP · Resposta em até 24h úteis</p>
+    </div>
+  </div>
+
+  <!-- ===================== HERO ===================== -->
+  <section id="inicio" class="hero" aria-label="Apresentação principal">
+    <div class="hero__inner">
+      <div class="hero__texto">
+        <p class="etiqueta">Construção &amp; Infraestrutura Urbana</p>
+        <h1 class="hero__titulo">Construímos o que a cidade precisa.</h1>
+        <p class="hero__sub">Terraplanagem · Pavimentação · Drenagem · Saneamento · Infraestrutura</p>
+        <div class="hero__acoes">
+          <a href="https://wa.me/5516996289719" target="_blank" rel="noopener noreferrer" class="btn btn--ouro">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.137.564 4.148 1.549 5.882L.057 23.43a.75.75 0 00.912.912l5.557-1.49A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.88 0-3.66-.49-5.21-1.35l-.37-.21-3.86 1.03 1.05-3.77-.23-.38A10 10 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            Falar no WhatsApp
+          </a>
+          <a href="#galeria" class="btn btn--borda">Ver Obras</a>
+        </div>
+        <div class="hero__rodape-info">
+          <span>Orçamento sem custo</span>
+          <span class="sep">|</span>
+          <span>Resposta em até 24h úteis</span>
+          <span class="sep">|</span>
+          <a href="tel:+5516996289719">(16) 99628-9719</a>
+        </div>
+      </div>
+      <div class="hero__imagem-wrap">
+        <img
+          src="assets/imagens/hero-sarjeta-escavadeira.jpeg"
+          alt="Sarjeta em execução com maquinário e equipe próprios"
+          class="hero__foto"
+        />
+        <p class="hero__foto-legenda">Sarjeta em execução com maquinário e equipe próprios</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FAIXA ===================== -->
+  <div class="faixa" aria-label="Credenciais">
+    <div class="faixa__inner">
+      <span>ISO 9001 em processo de certificação</span><span class="faixa__sep">·</span>
+      <span>Engenheiro responsável na equipe</span><span class="faixa__sep">·</span>
+      <span>CNPJ 68.097.293/0001-00</span><span class="faixa__sep">·</span>
+      <span>Fundada em 2026</span><span class="faixa__sep">·</span>
+      <span>20 Obras Entregues</span><span class="faixa__sep">·</span>
+      <span>08 Cidades Atendidas</span>
+    </div>
+  </div>
+
+  <!-- ===================== SOBRE ===================== -->
+  <section id="sobre" class="sobre">
+    <div class="sobre__inner">
+      <img
+        src="assets/imagens/sobre-equipe-medicao.jpeg"
+        alt="Equipe Fênix medindo vala em obra de saneamento"
+        class="sobre__foto"
+        loading="lazy"
+      />
+      <div class="sobre__texto">
+        <p class="etiqueta">Sobre Nós</p>
+        <h2 class="secao__titulo">Empresa nova, equipe com décadas de campo</h2>
+        <p class="sobre__p">A Fênix Construtora nasceu com um propósito claro: entregar infraestrutura que dura, com responsabilidade técnica e compromisso real com cada cliente.</p>
+        <p class="sobre__p">Fundada em 2026, a empresa é conduzida por profissionais com mais de 30 anos de experiência no setor. Gente que aprendeu o ofício em obra.</p>
+        <p class="sobre__p">Atuamos em obras de pequeno a grande porte, da abertura de ruas ao sistema completo de saneamento, com equipe própria, maquinário moderno e engenharia rigorosa. Não terceirizamos o que importa.</p>
+        <a href="#contato" class="btn btn--escuro">Falar com nossa equipe</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SERVIÇOS ===================== -->
+  <section id="servicos" class="servicos">
+    <div class="secao__inner">
+      <p class="etiqueta">O que fazemos</p>
+      <h2 class="secao__titulo" style="margin-bottom:28px">Sete especialidades. Uma equipe.</h2>
+      <ol class="servicos__lista" role="list">
+
+        <li class="servico__item">
+          <span class="servico__num">01</span>
+          <h3 class="servico__titulo">Construção de Casas</h3>
+          <p class="servico__desc">Projetos residenciais com execução estrutural, alvenaria e acabamento dentro do prazo e orçamento acordados.</p>
+        </li>
+        <li class="servico__item">
+          <span class="servico__num">02</span>
+          <h3 class="servico__titulo">Terraplanagem</h3>
+          <p class="servico__desc">Movimentação e compactação de terra com maquinário pesado para preparar qualquer terreno.</p>
+        </li>
+        <li class="servico__item">
+          <span class="servico__num">03</span>
+          <h3 class="servico__titulo">Pavimentação</h3>
+          <p class="servico__desc">Asfalto, paralelepípedo e concreto. Base, sub-base e revestimento corretos para cada tipo de via.</p>
+        </li>
+        <li class="servico__item">
+          <span class="servico__num">04</span>
+          <h3 class="servico__titulo">Galerias de Drenagem</h3>
+          <p class="servico__desc">Microdrenagem e macrodrenagem urbana para controle de cheias e escoamento pluvial eficiente.</p>
+        </li>
+        <li class="servico__item">
+          <span class="servico__num">05</span>
+          <h3 class="servico__titulo">Água Potável</h3>
+          <p class="servico__desc">Redes de abastecimento, adutoras e ramais domiciliares com materiais certificados e assentamento técnico.</p>
+        </li>
+        <li class="servico__item">
+          <span class="servico__num">06</span>
+          <h3 class="servico__titulo">Redes de Esgoto</h3>
+          <p class="servico__desc">Coletores tronco, poços de visita e ligações prediais para sistemas sanitários eficientes e ambientalmente corretos.</p>
+        </li>
+        <li class="servico__item">
+          <span class="servico__num">07</span>
+          <h3 class="servico__titulo">Guias e Sarjetas</h3>
+          <p class="servico__desc">Meio-fios, sarjetas e calçadas que organizam o espaço urbano e resistem décadas sem manutenção.</p>
+        </li>
+        <li class="servico__item servico__item--cta">
+          <p class="servico__cta-p">Não encontrou o serviço que precisa? Descreva a obra e avaliamos.</p>
+          <a href="#contato" class="servico__cta-link">Solicitar orçamento →</a>
+        </li>
+
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===================== GALERIA ===================== -->
+  <section id="galeria" class="galeria">
+    <div class="secao__inner">
+      <div class="galeria__header">
+        <div>
+          <p class="etiqueta">Portfólio</p>
+          <h2 class="secao__titulo">Obras que falam por si</h2>
+        </div>
+        <p class="galeria__sub">Registros reais de campo, entre obras da Fênix e obras executadas pela equipe antes da fundação.</p>
+      </div>
+      <div class="galeria__grade">
+
+        <figure class="galeria__item">
+          <img src="assets/imagens/galeria-grader-curva.jpeg" alt="Motoniveladora CAT em curva de sarjeta" class="galeria__foto" loading="lazy" />
+          <figcaption class="galeria__cap">
+            <span class="galeria__cat">Pavimentação</span>
+            <span class="galeria__desc-foto">CAT grader executando curva</span>
+          </figcaption>
+        </figure>
+
+        <figure class="galeria__item">
+          <img src="assets/imagens/galeria-construcao-casas.jpeg" alt="Conjunto habitacional em construção" class="galeria__foto" loading="lazy" />
+          <figcaption class="galeria__cap">
+            <span class="galeria__cat">Construção de Casas</span>
+            <span class="galeria__desc-foto">Conjunto habitacional com equipe própria</span>
+          </figcaption>
+        </figure>
+
+        <figure class="galeria__item">
+          <img src="assets/imagens/galeria-tubulacao-casas.jpeg" alt="Tubulação em conjunto habitacional" class="galeria__foto" loading="lazy" />
+          <figcaption class="galeria__cap">
+            <span class="galeria__cat">Redes de Esgoto</span>
+            <span class="galeria__desc-foto">Tubulação de grande diâmetro</span>
+          </figcaption>
+        </figure>
+
+        <figure class="galeria__item">
+          <img src="assets/imagens/galeria-komatsu-urbano.jpeg" alt="Escavadeira Komatsu em obra urbana" class="galeria__foto" loading="lazy" />
+          <figcaption class="galeria__cap">
+            <span class="galeria__cat">Terraplanagem</span>
+            <span class="galeria__desc-foto">Escavadeira Komatsu em obra urbana</span>
+          </figcaption>
+        </figure>
+
+        <figure class="galeria__item">
+          <img src="assets/imagens/galeria-equipe-tubulacao.jpeg" alt="Equipe inspecionando tubulação em vala profunda" class="galeria__foto" loading="lazy" />
+          <figcaption class="galeria__cap">
+            <span class="galeria__cat">Água Potável</span>
+            <span class="galeria__desc-foto">Inspeção técnica de profundidade e precisão</span>
+          </figcaption>
+        </figure>
+
+        <figure class="galeria__item">
+          <img src="assets/imagens/servico-tubulacao-vala.jpeg" alt="Assentamento de tubulação em vala aberta" class="galeria__foto" loading="lazy" />
+          <figcaption class="galeria__cap">
+            <span class="galeria__cat">Galerias de Drenagem</span>
+            <span class="galeria__desc-foto">Assentamento de tubulação em vala</span>
+          </figcaption>
+        </figure>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== NÚMEROS ===================== -->
+  <section id="numeros" class="numeros">
+    <div class="numeros__inner">
+      <p class="etiqueta etiqueta--claro">Fênix em números</p>
+      <h2 class="secao__titulo secao__titulo--claro">O que já entregamos</h2>
+      <div class="numeros__grade">
+        <div class="num__item">
+          <span class="num__valor">20</span>
+          <span class="num__titulo">Obras entregues</span>
+          <span class="num__desc">Somando as obras da Fênix e as executadas pela equipe antes da fundação</span>
+        </div>
+        <div class="num__item">
+          <span class="num__valor">08</span>
+          <span class="num__titulo">Cidades atendidas</span>
+          <span class="num__desc">Atuação a partir de Jaboticabal, no interior de São Paulo</span>
+        </div>
+        <div class="num__item">
+          <span class="num__valor num__valor--ouro">30+</span>
+          <span class="num__titulo">Anos de experiência na equipe</span>
+          <span class="num__desc">Profissionais que somam mais de três décadas no setor</span>
+        </div>
+        <div class="num__item">
+          <span class="num__valor">2026</span>
+          <span class="num__titulo">Ano de fundação</span>
+          <span class="num__desc">Estrutura própria de equipe e maquinário desde o início</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PROCESSO ===================== -->
+  <section id="processo" class="processo">
+    <div class="secao__inner">
+      <div class="processo__header">
+        <div>
+          <p class="etiqueta">Como trabalhamos</p>
+          <h2 class="secao__titulo">Do contato à entrega</h2>
+        </div>
+        <p class="processo__intro">Um processo claro, sem surpresas.</p>
+      </div>
+      <ol class="processo__lista" role="list">
+        <li class="processo__etapa processo__etapa--ativa">
+          <span class="processo__label">ETAPA 1</span>
+          <h3 class="processo__titulo">Visita Técnica</h3>
+          <p class="processo__desc">Nosso engenheiro vai ao local, entende o terreno e as necessidades. Sem custo.</p>
+        </li>
+        <li class="processo__etapa">
+          <span class="processo__label">ETAPA 2</span>
+          <h3 class="processo__titulo">Orçamento Detalhado</h3>
+          <p class="processo__desc">Planilha completa com materiais, mão de obra e equipamentos discriminados. Sem letra miúda.</p>
+        </li>
+        <li class="processo__etapa">
+          <span class="processo__label">ETAPA 3</span>
+          <h3 class="processo__titulo">Execução com Cronograma</h3>
+          <p class="processo__desc">Equipe própria, maquinário moderno e relatórios fotográficos semanais.</p>
+        </li>
+        <li class="processo__etapa">
+          <span class="processo__label">ETAPA 4</span>
+          <h3 class="processo__titulo">Entrega e Documentação</h3>
+          <p class="processo__desc">ART assinada, documentação técnica e suporte pós-entrega garantido em contrato.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===================== CONTATO ===================== -->
+  <section id="contato" class="contato">
+    <div class="contato__inner">
+      <div class="contato__info">
+        <p class="etiqueta">Entre em Contato</p>
+        <h2 class="secao__titulo">Vamos falar sobre sua obra?</h2>
+        <p class="contato__desc">Descreva o projeto e receba proposta técnica detalhada. Respondemos em até 24h úteis.</p>
+        <a href="https://wa.me/5516996289719" target="_blank" rel="noopener noreferrer" class="btn btn--ouro contato__wa">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.137.564 4.148 1.549 5.882L.057 23.43a.75.75 0 00.912.912l5.557-1.49A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.88 0-3.66-.49-5.21-1.35l-.37-.21-3.86 1.03 1.05-3.77-.23-.38A10 10 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+          (16) 99628-9719 no WhatsApp
+        </a>
+        <ul class="contato__canais" role="list">
+          <li class="contato__canal">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#8C6B23" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .93h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.1 8.81a16 16 0 006.06 6.06l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            <a href="tel:+5516996289719">(16) 99628-9719</a>
+          </li>
+          <li class="contato__canal">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#8C6B23" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <a href="mailto:rspfenixconstrutora@gmail.com">rspfenixconstrutora@gmail.com</a>
+          </li>
+          <li class="contato__canal contato__canal--endereco">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#8C6B23" stroke-width="2" aria-hidden="true" style="flex-shrink:0;margin-top:2px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <address>Rua Maria Alzira Geraldes Morelli, 111<br>Lot. Morada Nova, Jaboticabal/SP<br>CEP 14882-274</address>
+          </li>
+        </ul>
+      </div>
+
+      <form class="formulario" id="formulario-orcamento" novalidate>
+        <div class="formulario__linha">
+          <div class="campo">
+            <label class="campo__label" for="campo-nome-cliente">Nome completo</label>
+            <input class="campo__input" type="text" id="campo-nome-cliente" name="nomeCliente" placeholder="Seu nome" required autocomplete="name" />
+          </div>
+          <div class="campo">
+            <label class="campo__label" for="campo-telefone-cliente">Telefone / WhatsApp</label>
+            <input class="campo__input" type="tel" id="campo-telefone-cliente" name="telefoneCliente" placeholder="(16) 99628-9719" required autocomplete="tel" />
+          </div>
+        </div>
+        <div class="campo">
+          <label class="campo__label" for="campo-email-cliente">E-mail</label>
+          <input class="campo__input" type="email" id="campo-email-cliente" name="emailCliente" placeholder="seu@email.com.br" required autocomplete="email" />
+        </div>
+        <div class="campo">
+          <label class="campo__label" for="campo-servico-interesse">Serviço de interesse</label>
+          <select class="campo__input" id="campo-servico-interesse" name="servicoInteresse" required>
+            <option value="" disabled selected>Selecione um serviço</option>
+            <option value="construcao-casas">Construção de Casas</option>
+            <option value="terraplanagem">Terraplanagem</option>
+            <option value="pavimentacao">Pavimentação</option>
+            <option value="galerias-drenagem">Galerias de Drenagem</option>
+            <option value="agua-potavel">Água Potável</option>
+            <option value="redes-esgoto">Redes de Esgoto</option>
+            <option value="guias-sarjetas">Guias e Sarjetas</option>
+            <option value="outro">Outro / Não sei ainda</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label class="campo__label" for="campo-mensagem-projeto">Descreva seu projeto</label>
+          <textarea class="campo__input campo__input--textarea" id="campo-mensagem-projeto" name="mensagemProjeto" placeholder="Localização, tipo de obra, prazo esperado…" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn--ouro btn--full" id="botao-enviar-formulario">
+          <span id="texto-botao-enviar">Solicitar Orçamento Gratuito</span>
+        </button>
+        <p class="formulario__aviso">Seus dados são usados apenas para retorno comercial.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===================== RODAPÉ ===================== -->
+  <footer class="rodape" role="contentinfo">
+    <div class="rodape__inner">
+      <div class="rodape__marca">
+        <div class="rodape__logo-wrap">
+          <img src="assets/imagens/logo-fenix-rsp.jpeg" alt="Logo Fênix Construtora" class="rodape__logo" width="40" height="40" loading="lazy" />
+          <span class="rodape__nome">Fênix Construtora</span>
+        </div>
+        <p class="rodape__slogan">Infraestrutura que transforma cidades.</p>
+        <p class="rodape__cnpj">CNPJ: 68.097.293/0001-00</p>
+      </div>
+      <nav class="rodape__nav" aria-label="Links do rodapé">
+        <a href="#sobre"    class="rodape__link">Sobre a Empresa</a>
+        <a href="#servicos" class="rodape__link">Nossos Serviços</a>
+        <a href="#galeria"  class="rodape__link">Portfólio de Obras</a>
+        <a href="#numeros"  class="rodape__link">Fênix em Números</a>
+        <a href="#contato"  class="rodape__link">Solicitar Orçamento</a>
+      </nav>
+      <div class="rodape__redes">
+        <span class="rodape__redes-titulo">Redes</span>
+        <div class="rodape__redes-lista">
+          <a href="https://www.instagram.com/maquinaspaulo9" aria-label="Instagram" target="_blank" rel="noopener noreferrer" class="rodape__rede">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=100092358834554" aria-label="Facebook" target="_blank" rel="noopener noreferrer" class="rodape__rede">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="rodape__inferior">
+      <div class="rodape__inferior-inner">
+        <p>© 2026 Fênix Construtora. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== BARRA MOBILE FIXA (rodapé) ===================== -->
+  <div class="barra-mobile-spacer" aria-hidden="true"></div>
+  <div class="barra-mobile" role="complementary" aria-label="Contato rápido">
+    <a href="https://wa.me/5516996289719" target="_blank" rel="noopener noreferrer" class="barra-mobile__btn barra-mobile__btn--ouro">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.137.564 4.148 1.549 5.882L.057 23.43a.75.75 0 00.912.912l5.557-1.49A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.88 0-3.66-.49-5.21-1.35l-.37-.21-3.86 1.03 1.05-3.77-.23-.38A10 10 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      WhatsApp
+    </a>
+    <a href="tel:+5516996289719" class="barra-mobile__btn barra-mobile__btn--borda">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .93h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.1 8.81a16 16 0 006.06 6.06l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      Ligar
+    </a>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
