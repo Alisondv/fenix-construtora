@@ -174,9 +174,9 @@
   const botaoBaixarTodas = document.getElementById('botao-baixar-todas-fotos');
   const textoBotaoBaixarTodas = document.getElementById('texto-botao-baixar-todas');
   const linksFoto = document.querySelectorAll('.galeria__download');
-  if (!linksFoto.length) return;
+  if (!linksFoto.length || !botaoBaixarTodas) return;
 
-  /* Baixa um blob (ou qualquer URL) usando um link temporário */
+  /* Baixa um blob usando um link temporário */
   function dispararDownload(blobUrl, nomeArquivo) {
     const linkTemporario = document.createElement('a');
     linkTemporario.href = blobUrl;
@@ -185,41 +185,6 @@
     linkTemporario.click();
     linkTemporario.remove();
   }
-
-  /*
-   * No celular, tentamos abrir o menu nativo de compartilhamento
-   * (Web Share API com arquivo) para que o usuário salve a foto
-   * direto na galeria com um toque em "Salvar imagem".
-   * Se o navegador não suportar compartilhar arquivos, ou se a
-   * busca da imagem falhar, caímos no download tradicional.
-   */
-  linksFoto.forEach((link) => {
-    link.addEventListener('click', async (evento) => {
-      if (!navigator.canShare) return; // navegador sem suporte: deixa o <a download> padrão agir
-
-      const urlFoto = link.getAttribute('href');
-      const nomeArquivo = link.getAttribute('download');
-
-      evento.preventDefault();
-
-      try {
-        const resposta = await fetch(urlFoto);
-        const blobFoto = await resposta.blob();
-        const arquivoFoto = new File([blobFoto], nomeArquivo, { type: blobFoto.type || 'image/jpeg' });
-
-        if (navigator.canShare({ files: [arquivoFoto] })) {
-          await navigator.share({ files: [arquivoFoto] });
-          return;
-        }
-      } catch (erro) {
-        if (erro?.name === 'AbortError') return; // usuário cancelou o compartilhamento
-      }
-
-      dispararDownload(urlFoto, nomeArquivo);
-    });
-  });
-
-  if (!botaoBaixarTodas) return;
 
   botaoBaixarTodas.addEventListener('click', async () => {
     if (typeof JSZip === 'undefined') {
