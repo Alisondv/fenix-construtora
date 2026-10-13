@@ -3,6 +3,7 @@
  * 1. Menu mobile tela cheia
  * 2. Máscara telefone
  * 3. Formulário
+ * 4. Download das fotos da galeria
  */
 
 /* 1. MENU MOBILE */
@@ -165,5 +166,90 @@
       botaoEnviar.disabled = false;
       textoNoBotao.textContent = 'Solicitar Orçamento Gratuito';
     }, 3000);
+  });
+})();
+
+/* 4. DOWNLOAD DAS FOTOS DA GALERIA */
+(function () {
+  const botaoBaixarTodas = document.getElementById('botao-baixar-todas-fotos');
+  const textoBotaoBaixarTodas = document.getElementById('texto-botao-baixar-todas');
+  const linksFoto = document.querySelectorAll('.galeria__download');
+  if (!linksFoto.length) return;
+
+  /* Baixa um blob (ou qualquer URL) usando um link temporário */
+  function dispararDownload(blobUrl, nomeArquivo) {
+    const linkTemporario = document.createElement('a');
+    linkTemporario.href = blobUrl;
+    linkTemporario.download = nomeArquivo;
+    document.body.appendChild(linkTemporario);
+    linkTemporario.click();
+    linkTemporario.remove();
+  }
+
+  /*
+   * No celular, tentamos abrir o menu nativo de compartilhamento
+   * (Web Share API com arquivo) para que o usuário salve a foto
+   * direto na galeria com um toque em "Salvar imagem".
+   * Se o navegador não suportar compartilhar arquivos, ou se a
+   * busca da imagem falhar, caímos no download tradicional.
+   */
+  linksFoto.forEach((link) => {
+    link.addEventListener('click', async (evento) => {
+      if (!navigator.canShare) return; // navegador sem suporte: deixa o <a download> padrão agir
+
+      const urlFoto = link.getAttribute('href');
+      const nomeArquivo = link.getAttribute('download');
+
+      evento.preventDefault();
+
+      try {
+        const resposta = await fetch(urlFoto);
+        const blobFoto = await resposta.blob();
+        const arquivoFoto = new File([blobFoto], nomeArquivo, { type: blobFoto.type || 'image/jpeg' });
+
+        if (navigator.canShare({ files: [arquivoFoto] })) {
+          await navigator.share({ files: [arquivoFoto] });
+          return;
+        }
+      } catch (erro) {
+        if (erro?.name === 'AbortError') return; // usuário cancelou o compartilhamento
+      }
+
+      dispararDownload(urlFoto, nomeArquivo);
+    });
+  });
+
+  if (!botaoBaixarTodas) return;
+
+  botaoBaixarTodas.addEventListener('click', async () => {
+    if (typeof JSZip === 'undefined') {
+      window.alert('Não foi possível carregar o compactador de arquivos. Verifique sua conexão e tente novamente.');
+      return;
+    }
+
+    botaoBaixarTodas.disabled = true;
+    textoBotaoBaixarTodas.textContent = 'Preparando arquivo…';
+
+    try {
+      const pacoteZip = new JSZip();
+
+      await Promise.all(Array.from(linksFoto).map(async (link) => {
+        const resposta = await fetch(link.getAttribute('href'));
+        if (!resposta.ok) throw new Error(`Falha ao buscar ${link.getAttribute('href')}`);
+        const blobFoto = await resposta.blob();
+        pacoteZip.file(link.getAttribute('download'), blobFoto);
+      }));
+
+      const blobZip = await pacoteZip.generateAsync({ type: 'blob' });
+      const urlZip = URL.createObjectURL(blobZip);
+      dispararDownload(urlZip, 'fotos-fenix-construtora.zip');
+      URL.revokeObjectURL(urlZip);
+    } catch (erro) {
+      console.error('Erro ao gerar o arquivo com as fotos:', erro);
+      window.alert('Não foi possível baixar as fotos agora. Tente novamente em alguns instantes.');
+    } finally {
+      botaoBaixarTodas.disabled = false;
+      textoBotaoBaixarTodas.textContent = 'Baixar todas as fotos';
+    }
   });
 })();

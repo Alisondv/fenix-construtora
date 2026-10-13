@@ -460,6 +460,7 @@ address { font-style: normal; }
   gap: clamp(14px, 2vw, 22px);
 }
 .galeria__item { margin: 0; display: flex; flex-direction: column; gap: 8px; }
+.galeria__media { position: relative; }
 .galeria__foto {
   width: 100%;
   height: clamp(200px, 20vw, 250px);
@@ -467,6 +468,26 @@ address { font-style: normal; }
   border: 1px solid var(--borda);
   display: block;
 }
+.galeria__download {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(20, 18, 15, .55);
+  color: #FFFFFF;
+  transition: background .2s, transform .2s;
+}
+.galeria__download:hover,
+.galeria__download:focus-visible {
+  background: var(--ouro-escuro);
+  transform: scale(1.08);
+}
+.galeria__btn-baixar-todas { flex-shrink: 0; }
 .galeria__cap { display: flex; flex-direction: column; gap: 2px; }
 .galeria__cat {
   font-size: 12px;
