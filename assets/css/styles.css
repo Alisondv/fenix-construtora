@@ -619,7 +619,7 @@ address { font-style: normal; }
   border: 1px solid #D8D3CB;
   border-radius: 2px;
   padding: 11px 12px;
-  font-size: 15.5px;
+  font-size: 16px;
   color: var(--texto);
   outline: none;
   transition: border-color .15s, background .15s;
