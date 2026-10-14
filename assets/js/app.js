@@ -4,6 +4,7 @@
  * 2. Máscara telefone
  * 3. Formulário
  * 4. Download das fotos da galeria
+ * 5. Fotos enviadas pelo admin (mural dinâmico)
  */
 
 /* 1. MENU MOBILE */
@@ -173,8 +174,7 @@
 (function () {
   const botaoBaixarTodas = document.getElementById('botao-baixar-todas-fotos');
   const textoBotaoBaixarTodas = document.getElementById('texto-botao-baixar-todas');
-  const linksFoto = document.querySelectorAll('.galeria__download');
-  if (!linksFoto.length || !botaoBaixarTodas) return;
+  if (!botaoBaixarTodas) return;
 
   /* Baixa um blob usando um link temporário */
   function dispararDownload(blobUrl, nomeArquivo) {
@@ -187,6 +187,12 @@
   }
 
   botaoBaixarTodas.addEventListener('click', async () => {
+    /* Consultado no momento do clique (não no carregamento da página) para
+       incluir também as fotos enviadas pelo admin, adicionadas de forma
+       assíncrona pela seção 5 abaixo. */
+    const linksFoto = document.querySelectorAll('.galeria__download');
+    if (!linksFoto.length) return;
+
     if (typeof JSZip === 'undefined') {
       window.alert('Não foi possível carregar o compactador de arquivos. Verifique sua conexão e tente novamente.');
       return;
@@ -217,4 +223,58 @@
       textoBotaoBaixarTodas.textContent = 'Baixar todas as fotos';
     }
   });
+})();
+
+/* 5. FOTOS ENVIADAS PELO ADMIN (mural dinâmico) */
+(function () {
+  const grade = document.querySelector('.galeria__grade');
+  if (!grade) return;
+
+  fetch('/api/fotos')
+    .then((resposta) => (resposta.ok ? resposta.json() : { fotos: [] }))
+    .then((dados) => {
+      (dados.fotos || []).forEach((foto) => {
+        const nomeArquivoDownload = `fenix-${(foto.nomeArquivo || 'foto-galeria').replace(/[^a-z0-9.-]+/gi, '-')}`;
+        const urlDownload = `/api/baixar?url=${encodeURIComponent(foto.url)}&nome=${encodeURIComponent(nomeArquivoDownload)}`;
+
+        const figura = document.createElement('figure');
+        figura.className = 'galeria__item';
+
+        const media = document.createElement('div');
+        media.className = 'galeria__media';
+
+        const imagem = document.createElement('img');
+        imagem.src = foto.url;
+        imagem.alt = foto.descricao || 'Foto da obra enviada pela equipe';
+        imagem.className = 'galeria__foto';
+        imagem.loading = 'lazy';
+
+        const linkDownload = document.createElement('a');
+        linkDownload.href = urlDownload;
+        linkDownload.download = nomeArquivoDownload;
+        linkDownload.className = 'galeria__download';
+        linkDownload.setAttribute('aria-label', 'Baixar foto');
+        linkDownload.title = 'Baixar foto';
+        linkDownload.innerHTML =
+          '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>';
+
+        media.append(imagem, linkDownload);
+
+        const legenda = document.createElement('figcaption');
+        legenda.className = 'galeria__cap';
+
+        const categoria = document.createElement('span');
+        categoria.className = 'galeria__cat';
+        categoria.textContent = 'Enviada pela equipe';
+
+        const descricao = document.createElement('span');
+        descricao.className = 'galeria__desc-foto';
+        descricao.textContent = foto.descricao || 'Foto da obra';
+
+        legenda.append(categoria, descricao);
+        figura.append(media, legenda);
+        grade.appendChild(figura);
+      });
+    })
+    .catch((erro) => console.error('Não foi possível carregar as fotos adicionais da galeria:', erro));
 })();

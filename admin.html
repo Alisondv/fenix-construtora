@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Área Administrativa — RSP Fênix</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="icon" type="image/x-icon" href="assets/imagens/logo-fenix-rsp-ico.ico" />
+</head>
+<body>
+
+  <main class="admin">
+    <div class="admin__topo">
+      <img src="assets/imagens/logo-fenix-rsp.jpeg" alt="Logo RSP" class="admin__logo" width="36" height="36" />
+      <span>RSP Fênix — Área Administrativa</span>
+    </div>
+
+    <!-- ===== TELA DE LOGIN ===== -->
+    <section id="tela-login" class="admin__cartao">
+      <h1 class="admin__titulo">Entrar</h1>
+      <p class="admin__texto-apoio">Digite a senha para gerenciar as fotos do mural de obras.</p>
+      <form id="formulario-login" novalidate>
+        <div class="campo">
+          <label class="campo__label" for="campo-senha-admin">Senha</label>
+          <input type="password" id="campo-senha-admin" class="campo__input" autocomplete="current-password" required />
+        </div>
+        <p id="erro-login" class="campo__erro" role="alert"></p>
+        <button type="submit" class="btn btn--ouro btn--full">Entrar</button>
+      </form>
+    </section>
+
+    <!-- ===== PAINEL (visível após login) ===== -->
+    <section id="tela-painel" class="admin__cartao" hidden>
+      <div class="admin__cabecalho-painel">
+        <h1 class="admin__titulo">Fotos do mural</h1>
+        <button type="button" id="botao-sair" class="btn btn--borda">Sair</button>
+      </div>
+
+      <form id="formulario-upload" class="admin__formulario-upload">
+        <div class="campo">
+          <label class="campo__label" for="campo-arquivo-foto">Nova foto</label>
+          <input type="file" id="campo-arquivo-foto" class="campo__input" accept="image/jpeg,image/png,image/webp" required />
+        </div>
+        <img id="preview-imagem" class="admin__preview" alt="Pré-visualização da foto" hidden />
+        <div class="campo">
+          <label class="campo__label" for="campo-descricao-foto">Descrição (opcional)</label>
+          <input type="text" id="campo-descricao-foto" class="campo__input" maxlength="80" placeholder="Ex.: Equipe finalizando pavimentação" />
+        </div>
+        <p id="erro-upload" class="campo__erro" role="alert"></p>
+        <button type="submit" id="botao-enviar-foto" class="btn btn--ouro btn--full">
+          <span id="texto-botao-enviar-foto">Enviar foto</span>
+        </button>
+      </form>
+
+      <h2 class="admin__subtitulo">Fotos já no mural</h2>
+      <div id="lista-fotos-enviadas" class="admin__lista-fotos">
+        <p>Carregando fotos…</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="assets/js/admin.js"></script>
+</body>
+</html>

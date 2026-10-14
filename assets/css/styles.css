@@ -737,3 +737,77 @@ address { font-style: normal; }
   /* Números: coluna única */
   .numeros__grade { grid-template-columns: 1fr; }
 }
+
+/* ---------- ÁREA ADMINISTRATIVA ---------- */
+.admin {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: clamp(24px, 6vw, 56px) 16px;
+  background: var(--fundo);
+}
+
+.admin__topo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--fonte-titulo);
+  font-weight: 600;
+  color: var(--texto);
+}
+
+.admin__logo { border-radius: 8px; object-fit: cover; }
+
+.admin__cartao {
+  width: 100%;
+  max-width: 440px;
+  background: var(--branco);
+  border: 1px solid var(--borda);
+  border-radius: 14px;
+  padding: clamp(20px, 4vw, 32px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.admin__titulo { font-family: var(--fonte-titulo); font-weight: 700; font-size: 22px; color: var(--texto); }
+.admin__subtitulo { font-family: var(--fonte-titulo); font-weight: 600; font-size: 16px; color: var(--texto); margin-top: 8px; }
+.admin__texto-apoio { font-size: 14px; color: var(--texto-fraco); margin-top: -8px; }
+
+.admin__cabecalho-painel { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+
+#formulario-login,
+.admin__formulario-upload { display: flex; flex-direction: column; gap: 14px; }
+
+.admin__preview {
+  width: 100%;
+  max-height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid var(--borda);
+}
+
+.admin__lista-fotos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.admin__foto-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--texto-leve);
+}
+
+.admin__foto-item img {
+  width: 100%;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid var(--borda);
+}
+}
