@@ -6,7 +6,7 @@
 const crypto = require('crypto');
 
 const NOME_COOKIE = 'sessao_admin';
-const DURACAO_SESSAO_MS = 1000 * 60 * 60 * 4; // 4 horas
+const DURACAO_SESSAO_MS = 1000 * 60 * 60 * 24 * 90; // 90 dias (cliente leigo: evitar pedir senha com frequência)
 
 function assinar(valor, segredo) {
   return crypto.createHmac('sha256', segredo).update(valor).digest('hex');

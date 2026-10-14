@@ -14,8 +14,8 @@ module.exports = async function handler(req, res) {
     const fotos = blobs
       .sort((a, b) => new Date(b.uploadedAt) - new Date(a.uploadedAt))
       .map((blob) => {
-        const { nomeArquivo, descricao } = decodificarNomeArquivo(blob.pathname);
-        return { url: blob.url, nomeArquivo, descricao };
+        const { nomeArquivo, categoria, descricao } = decodificarNomeArquivo(blob.pathname);
+        return { url: blob.url, nomeArquivo, categoria, descricao };
       });
 
     res.setHeader('Cache-Control', 'public, max-age=30');

@@ -265,7 +265,7 @@
 
         const categoria = document.createElement('span');
         categoria.className = 'galeria__cat';
-        categoria.textContent = 'Enviada pela equipe';
+        categoria.textContent = foto.categoria || 'Enviada pela equipe';
 
         const descricao = document.createElement('span');
         descricao.className = 'galeria__desc-foto';

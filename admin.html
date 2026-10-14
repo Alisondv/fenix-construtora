@@ -16,7 +16,10 @@
   <main class="admin">
     <div class="admin__topo">
       <img src="assets/imagens/logo-fenix-rsp.jpeg" alt="Logo RSP" class="admin__logo" width="36" height="36" />
-      <span>RSP Fênix — Área Administrativa</span>
+      <div class="admin__topo-texto">
+        <span class="admin__topo-marca">RSP Fênix</span>
+        <span class="admin__topo-sub">Área Administrativa</span>
+      </div>
     </div>
 
     <!-- ===== TELA DE LOGIN ===== -->
@@ -47,16 +50,22 @@
         </div>
         <img id="preview-imagem" class="admin__preview" alt="Pré-visualização da foto" hidden />
         <div class="campo">
+          <label class="campo__label" for="campo-categoria-foto">Categoria</label>
+          <input type="text" id="campo-categoria-foto" class="campo__input" maxlength="40" value="Enviada pela equipe" />
+        </div>
+        <div class="campo">
           <label class="campo__label" for="campo-descricao-foto">Descrição (opcional)</label>
           <input type="text" id="campo-descricao-foto" class="campo__input" maxlength="80" placeholder="Ex.: Equipe finalizando pavimentação" />
         </div>
         <p id="erro-upload" class="campo__erro" role="alert"></p>
+        <p id="sucesso-upload" class="campo__sucesso" role="status" hidden>Foto enviada com sucesso!</p>
         <button type="submit" id="botao-enviar-foto" class="btn btn--ouro btn--full">
           <span id="texto-botao-enviar-foto">Enviar foto</span>
         </button>
       </form>
 
       <h2 class="admin__subtitulo">Fotos já no mural</h2>
+      <p id="erro-fotos" class="campo__erro" role="alert"></p>
       <div id="lista-fotos-enviadas" class="admin__lista-fotos">
         <p>Carregando fotos…</p>
       </div>

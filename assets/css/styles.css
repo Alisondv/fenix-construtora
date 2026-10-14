@@ -631,6 +631,7 @@ address { font-style: normal; }
 .campo__input:focus { border-color: var(--ouro-escuro); background: var(--branco); }
 .campo__input--textarea { resize: vertical; min-height: 110px; }
 .campo__erro { font-size: 13px; color: #c0392b; margin-top: 2px; }
+.campo__sucesso { font-size: 13px; color: #1E7E34; font-weight: 600; margin-top: 2px; }
 .formulario__aviso { font-size: 13.5px; color: var(--texto-fraco); }
 
 /* ---------- RODAPÉ ---------- */
@@ -762,9 +763,12 @@ address { font-style: normal; }
   align-items: center;
   gap: 10px;
   font-family: var(--fonte-titulo);
-  font-weight: 600;
   color: var(--texto);
 }
+
+.admin__topo-texto { display: flex; flex-direction: column; line-height: 1.25; }
+.admin__topo-marca { font-weight: 700; font-size: 16px; }
+.admin__topo-sub { font-weight: 500; font-size: 12.5px; color: var(--texto-fraco); }
 
 .admin__logo { border-radius: 8px; object-fit: cover; }
 

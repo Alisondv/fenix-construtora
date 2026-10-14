@@ -11,12 +11,15 @@
 
   const formularioUpload = document.getElementById('formulario-upload');
   const campoArquivo = document.getElementById('campo-arquivo-foto');
+  const campoCategoria = document.getElementById('campo-categoria-foto');
   const campoDescricao = document.getElementById('campo-descricao-foto');
   const previewImagem = document.getElementById('preview-imagem');
   const erroUpload = document.getElementById('erro-upload');
+  const sucessoUpload = document.getElementById('sucesso-upload');
   const botaoEnviarFoto = document.getElementById('botao-enviar-foto');
   const textoBotaoEnviar = document.getElementById('texto-botao-enviar-foto');
   const listaFotos = document.getElementById('lista-fotos-enviadas');
+  const erroFotos = document.getElementById('erro-fotos');
 
   const LARGURA_MAXIMA_PX = 1600;
   const QUALIDADE_JPEG = 0.82;
@@ -105,9 +108,20 @@
     }
   });
 
+  let temporizadorSucesso;
+
+  function mostrarSucessoEnvio() {
+    sucessoUpload.hidden = false;
+    clearTimeout(temporizadorSucesso);
+    temporizadorSucesso = setTimeout(() => {
+      sucessoUpload.hidden = true;
+    }, 4000);
+  }
+
   formularioUpload.addEventListener('submit', async (evento) => {
     evento.preventDefault();
     erroUpload.textContent = '';
+    sucessoUpload.hidden = true;
 
     const arquivo = campoArquivo.files?.[0];
     if (!arquivo) {
@@ -123,7 +137,11 @@
       const resposta = await fetch('/api/upload', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ imagemBase64, descricao: campoDescricao.value.trim() }),
+        body: JSON.stringify({
+          imagemBase64,
+          categoria: campoCategoria.value.trim(),
+          descricao: campoDescricao.value.trim(),
+        }),
       });
       const dados = await resposta.json();
       if (!resposta.ok) {
@@ -133,6 +151,7 @@
       formularioUpload.reset();
       previewImagem.hidden = true;
       await carregarFotos();
+      mostrarSucessoEnvio();
     } catch {
       erroUpload.textContent = 'Erro de conexão. Tente novamente.';
     } finally {
@@ -143,8 +162,11 @@
 
   async function carregarFotos() {
     listaFotos.innerHTML = '<p>Carregando fotos…</p>';
+    erroFotos.textContent = '';
     try {
-      const resposta = await fetch('/api/fotos');
+      // cache-busting: o painel precisa sempre da lista mais recente (ex.: logo após excluir),
+      // enquanto a galeria pública pode usar a resposta em cache normalmente.
+      const resposta = await fetch(`/api/fotos?t=${Date.now()}`, { cache: 'no-store' });
       const dados = await resposta.json();
       const fotos = dados.fotos || [];
 
@@ -162,6 +184,10 @@
         imagem.src = foto.url;
         imagem.alt = foto.descricao || 'Foto do mural';
 
+        const categoria = document.createElement('p');
+        categoria.className = 'galeria__cat';
+        categoria.textContent = foto.categoria || 'Enviada pela equipe';
+
         const descricao = document.createElement('p');
         descricao.textContent = foto.descricao || '(sem descrição)';
 
@@ -172,19 +198,27 @@
         botaoExcluir.addEventListener('click', async () => {
           if (!window.confirm('Excluir esta foto do mural?')) return;
           botaoExcluir.disabled = true;
+          erroFotos.textContent = '';
           try {
-            await fetch('/api/excluir', {
+            const resposta = await fetch('/api/excluir', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ url: foto.url }),
             });
+            const dados = await resposta.json().catch(() => ({}));
+            if (!resposta.ok) {
+              erroFotos.textContent = dados.erro || 'Não foi possível excluir a foto.';
+              botaoExcluir.disabled = false;
+              return;
+            }
             await carregarFotos();
           } catch {
+            erroFotos.textContent = 'Erro de conexão. Tente novamente.';
             botaoExcluir.disabled = false;
           }
         });
 
-        item.append(imagem, descricao, botaoExcluir);
+        item.append(imagem, categoria, descricao, botaoExcluir);
         listaFotos.appendChild(item);
       });
     } catch {

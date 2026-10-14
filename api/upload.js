@@ -1,6 +1,6 @@
 const { put } = require('@vercel/blob');
 const { sessaoValida } = require('./_auth');
-const { codificarDescricao } = require('./_galeria');
+const { codificarMeta } = require('./_galeria');
 
 const TAMANHO_MAXIMO_BYTES = 6 * 1024 * 1024; // 6MB já decodificado (a imagem chega bem menor que isso)
 const EXTENSAO_POR_TIPO = {
@@ -19,7 +19,7 @@ module.exports = async function handler(req, res) {
     return res.status(401).json({ erro: 'Sessão expirada. Faça login novamente.' });
   }
 
-  const { imagemBase64, descricao } = req.body || {};
+  const { imagemBase64, categoria, descricao } = req.body || {};
   if (typeof imagemBase64 !== 'string') {
     return res.status(400).json({ erro: 'Nenhuma imagem enviada' });
   }
@@ -37,9 +37,9 @@ module.exports = async function handler(req, res) {
   }
 
   const extensao = EXTENSAO_POR_TIPO[tipoMime];
-  const descricaoCodificada = codificarDescricao(descricao);
+  const metaCodificada = codificarMeta(categoria, descricao);
   const identificador = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
-  const pathname = `galeria/${identificador}${descricaoCodificada ? `~${descricaoCodificada}` : ''}.${extensao}`;
+  const pathname = `galeria/${identificador}~${metaCodificada}.${extensao}`;
 
   try {
     const blob = await put(pathname, bufferImagem, {
