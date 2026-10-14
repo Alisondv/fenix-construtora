@@ -31,6 +31,7 @@
 /* ---------- RESET ---------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
+[hidden] { display: none !important; }
 body {
   font-family: var(--fonte-corpo);
   background: var(--fundo);
@@ -668,9 +669,16 @@ address { font-style: normal; }
   max-width: var(--max-w);
   margin: 0 auto;
   padding: 16px var(--px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
   font-size: 13.5px;
   color: #8B8F95;
 }
+.rodape__link-admin { color: #6B6F75; font-size: 12.5px; text-decoration: none; transition: color .15s; }
+.rodape__link-admin:hover { color: var(--ouro-claro); }
 
 /* ---------- BARRA MOBILE FIXA ---------- */
 .barra-mobile-spacer { display: none; height: 74px; }
@@ -809,5 +817,4 @@ address { font-style: normal; }
   object-fit: cover;
   border-radius: 8px;
   border: 1px solid var(--borda);
-}
 }
